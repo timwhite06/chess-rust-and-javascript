@@ -12,6 +12,8 @@ async fn main() -> std::io::Result<()> {
     // Attempt to bind and run the server
     let server_result = HttpServer::new(move || {
         App::new()
+            // * Register all services here - e.g. APIs, static files, etc.
+            .service(api_endpoint)
             .service(
                 fs::Files::new("/", "../frontend")
                     .index_file("index.html") // Serve index.html by default

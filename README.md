@@ -27,32 +27,37 @@ This project is a web-based chess application with a JavaScript frontend and a R
 ## Libraries Used
 The backend uses the following Rust libraries to provide functionality:
 
-1. **Axum**
-   - **Purpose:** A modern, ergonomic web framework for building APIs and web servers.
+1. **Actix Web**
+   - **Purpose:** A powerful, pragmatic, and extremely fast web framework for Rust.
    - **Usage in Project:** Used to handle HTTP routes and serve static files.
-   - **Why Axum:** Its simplicity and compatibility with async programming make it ideal for building performant and scalable applications.
+   - **Why Actix Web:** Its performance and ease of use make it ideal for building web servers and APIs.
 
-2. **Tower HTTP**
-   - **Purpose:** Provides middleware and utilities for web servers.
-   - **Usage in Project:** Used to serve static files (HTML, CSS, JS) from a directory on the server.
-   - **Why Tower HTTP:** It integrates seamlessly with Axum for static file serving and other HTTP-specific tasks.
-
-3. **Tokio**
-   - **Purpose:** An asynchronous runtime for Rust.
+2. **Actix RT**
+   - **Purpose:** Actix runtime for running asynchronous tasks.
    - **Usage in Project:** Powers asynchronous operations, such as handling multiple HTTP requests and WebSocket connections concurrently.
-   - **Why Tokio:** It’s fast, reliable, and widely used in the Rust ecosystem for async programming.
+   - **Why Actix RT:** It integrates seamlessly with Actix Web for async programming.
 
-4. **SQLx**
+3. **Actix Web Actors**
+   - **Purpose:** Provides support for WebSocket actors in Actix Web.
+   - **Usage in Project:** Used to handle WebSocket connections for real-time communication.
+   - **Why Actix Web Actors:** It allows easy integration of WebSocket support in Actix Web applications.
+
+4. **Actix Files**
+   - **Purpose:** Middleware for serving static files.
+   - **Usage in Project:** Used to serve static files (HTML, CSS, JS) from a directory on the server.
+   - **Why Actix Files:** It integrates seamlessly with Actix Web for static file serving.
+
+5. **SQLx**
    - **Purpose:** A Rust library for interacting with databases.
    - **Usage in Project:** Used to connect to the PostgreSQL database and execute SQL queries for storing and retrieving game data.
    - **Why SQLx:** It supports async queries, has compile-time query validation, and integrates well with Rust.
 
-5. **Tracing**
+6. **Tracing**
    - **Purpose:** A structured logging and diagnostics library for Rust.
    - **Usage in Project:** Provides detailed logs for debugging and monitoring application behavior.
    - **Why Tracing:** It enables rich, structured logs that help identify issues during development and production.
 
-6. **Tracing Subscriber**
+7. **Tracing Subscriber**
    - **Purpose:** A library that processes and outputs tracing data.
    - **Usage in Project:** Configures how logs are displayed in the application.
    - **Why Tracing Subscriber:** It works in tandem with tracing to provide a flexible logging setup.

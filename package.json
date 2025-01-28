@@ -1,0 +1,11 @@
+{
+  "name": "chess-rust-and-javascript",
+  "version": "1.0.0",
+  "description": "Chess made with JavaScript and Rust",
+  "scripts": {
+    "host": "cd ./backend && cargo run",
+    "build:deploy": ""
+  },
+  "author": "Timothy White",
+  "license": "MIT"
+}
