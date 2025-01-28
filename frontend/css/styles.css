@@ -1,0 +1,113 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+#mainContainer {
+    position: 'relative';
+}
+
+/* Assuming the parent element in your HTML has the ID "chessboard" */
+#chessboard {
+    /* Set the total dimension of the board (adjust to your liking) */
+    position: 'relative';
+    width: 480px;
+    height: 480px;
+  
+    /* Create an 8x8 grid */
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+  
+    /* Just for a neat border around the board */
+    border: 2px solid #333;
+    box-sizing: border-box;
+}
+
+#turnIndicator {
+    position: 'absolute';
+    top: 100px;
+    width: 'auto';
+    background-color: #333;
+    color: white;
+    font-size: 1.5em;
+    z-index: 100;
+}
+
+  
+/* Style each individual cell */
+.cell {
+    display: flex;             /* allows centering content */
+    justify-content: center;   /* horizontally center piece content (if any) */
+    align-items: center;       /* vertically center piece content (if any) */
+    font-size: 1.2em;          /* if you want to display text/piece letters */
+    box-sizing: border-box;
+}
+
+/* Light square */
+.cell.white {
+    position: relative;
+    background-color: #f0d9b5; /* common chessboard "light" color */
+}
+
+/* Dark square */
+.cell.black {
+    position: relative;
+    background-color: #b58863; /* common chessboard "dark" color */
+}
+
+.notationBoardLabel-COLUMN {
+    position: absolute;
+    bottom: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+
+.notationBoardLabel-ROW {
+    position: absolute;
+    left: -30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+
+.piece {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+}
+.piece-hover:hover {
+    transform: scale(1.08);
+    transform-origin: center center;
+}
+
+/* styles.css */
+
+/* Highlight selected cell */
+.cell.selected {
+    border: 2px solid yellow;
+  }
+  
+  /* Highlight valid move cells */
+  .cell.valid-move {
+    background-color: rgba(0, 255, 0, 0.3); /* Light green overlay */
+  }
+  
+
