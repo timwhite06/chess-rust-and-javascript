@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO games (game_url_id) VALUES ($1) ON CONFLICT (game_url_id) DO NOTHING",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "da8ba9b311782704162738df41c77a28986b53e2545cf3fa097d5359b918df69"
+}
