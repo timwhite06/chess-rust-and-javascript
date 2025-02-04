@@ -1,10 +1,8 @@
-// moveLogic.js
 export default class MoveLogic {
   constructor(game) {
     this.game = game; // Reference to ChessGame instance
     this.selectedPiece = null;
     this.selectedTargetCell = null;
-
     // Bind the method to ensure correct 'this' context
     this.handleCellClick = this.handleCellClick.bind(this);
   }
@@ -26,20 +24,28 @@ export default class MoveLogic {
         if (!cell.piece || cell.piece.color !== this.selectedPiece.color) {
             this.selectedTargetCell = cell;
 
-            console.log('Selected target cell:', this.selectedTargetCell);
-
             // Validate the move
             if (this.isValidMove(this.selectedSourceCell, this.selectedTargetCell)) {
                 // Move the piece
                 this.selectedTargetCell.piece = this.selectedPiece;
                 this.selectedSourceCell.piece = { type: null, color: null, imagePath: null };
 
+                // Create the move log data
+              const moveData = {
+                from: this.selectedSourceCell.location.notation,
+                to: cell.location.notation,
+                piece: this.selectedPiece
+              };
+
+              // Delegate logging to the ChessGame instance
+              // You can either pass the move object or a JSON string, as needed
+              this.game.logMove(moveData);
+
+
                 // Clear the selection
                 this.selectedPiece = null;
                 this.selectedSourceCell = null;
                 this.selectedTargetCell = null;
-
-                console.log('Moved piece to:', cell.location.notation);
 
                 // Re-render the board
                 board.render();

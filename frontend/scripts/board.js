@@ -46,35 +46,35 @@ export default class Board {
 
   setupPieces() {
     // Place pieces on the board to start the game
-    const whitePiecesImageLocation = 'assets/images/white/';
-    const blackPiecesImageLocation = 'assets/images/black/';
+    const whitePiecesImageLocation = 'public/images/white/';
+    const blackPiecesImageLocation = 'public/images/black/';
   
     // White pieces setup
     this.board[7].forEach((cell, colIndex) => {
       switch (colIndex) {
         case 0:
         case 7:
-          cell.piece = { type: 'rook', color: 'white', imagePath: `${whitePiecesImageLocation}rook.png` };
+          cell.piece = { type: 'rook', color: 'white', imagePath: `${whitePiecesImageLocation}rook.png`, id: `white-rook-${colIndex}` };
           break;
         case 1:
         case 6:
-          cell.piece = { type: 'knight', color: 'white', imagePath: `${whitePiecesImageLocation}knight.png` };
+          cell.piece = { type: 'knight', color: 'white', imagePath: `${whitePiecesImageLocation}knight.png`, id: `white-knight-${colIndex}` };
           break;
         case 2:
         case 5:
-          cell.piece = { type: 'bishop', color: 'white', imagePath: `${whitePiecesImageLocation}bishop.png` };
+          cell.piece = { type: 'bishop', color: 'white', imagePath: `${whitePiecesImageLocation}bishop.png`, id: `white-bishop-${colIndex}` };
           break;
         case 3:
-          cell.piece = { type: 'queen', color: 'white', imagePath: `${whitePiecesImageLocation}queen.png` };
+          cell.piece = { type: 'queen', color: 'white', imagePath: `${whitePiecesImageLocation}queen.png`, id: `white-queen-${colIndex}` };
           break;
         case 4:
-          cell.piece = { type: 'king', color: 'white', imagePath: `${whitePiecesImageLocation}king.png` };
+          cell.piece = { type: 'king', color: 'white', imagePath: `${whitePiecesImageLocation}king.png`, id: `white-king-${colIndex}` };
           break;
       }
     });
   
-    this.board[6].forEach((cell) => {
-      cell.piece = { type: 'pawn', color: 'white', imagePath: `${whitePiecesImageLocation}pawn.png` };
+    this.board[6].forEach((cell, index) => {
+      cell.piece = { type: 'pawn', color: 'white', imagePath: `${whitePiecesImageLocation}pawn.png`, id: `white-pawn-${index}` };
     });
   
     // Black pieces setup
@@ -82,27 +82,27 @@ export default class Board {
       switch (colIndex) {
         case 0:
         case 7:
-          cell.piece = { type: 'rook', color: 'black', imagePath: `${blackPiecesImageLocation}rook.png` };
+          cell.piece = { type: 'rook', color: 'black', imagePath: `${blackPiecesImageLocation}rook.png`, id: `black-rook-${colIndex}` };
           break;
         case 1:
         case 6:
-          cell.piece = { type: 'knight', color: 'black', imagePath: `${blackPiecesImageLocation}knight.png` };
+          cell.piece = { type: 'knight', color: 'black', imagePath: `${blackPiecesImageLocation}knight.png`, id: `black-knight-${colIndex}` };
           break;
         case 2:
         case 5:
-          cell.piece = { type: 'bishop', color: 'black', imagePath: `${blackPiecesImageLocation}bishop.png` };
+          cell.piece = { type: 'bishop', color: 'black', imagePath: `${blackPiecesImageLocation}bishop.png`, id: `black-bishop-${colIndex}` };
           break;
         case 3:
-          cell.piece = { type: 'queen', color: 'black', imagePath: `${blackPiecesImageLocation}queen.png` };
+          cell.piece = { type: 'queen', color: 'black', imagePath: `${blackPiecesImageLocation}queen.png`, id: `black-queen-${colIndex}` };
           break;
         case 4:
-          cell.piece = { type: 'king', color: 'black', imagePath: `${blackPiecesImageLocation}king.png` };
+          cell.piece = { type: 'king', color: 'black', imagePath: `${blackPiecesImageLocation}king.png`, id: `black-king-${colIndex}` };
           break;
       }
     });
   
-    this.board[1].forEach((cell) => {
-      cell.piece = { type: 'pawn', color: 'black', imagePath: `${blackPiecesImageLocation}pawn.png` };
+    this.board[1].forEach((cell, index) => {
+      cell.piece = { type: 'pawn', color: 'black', imagePath: `${blackPiecesImageLocation}pawn.png`, id: `black-pawn-${index}` };
     });
   }
   

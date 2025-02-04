@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "Chess made with JavaScript and Rust",
   "scripts": {
-    "host": "cd ./backend && cargo run",
-    "build:deploy": ""
+    "serve": "cd ./backend && cargo run",
+    "build:backend": "cd ./backend && cargo build",
+    "docker:up": "cd ./backend && docker-compose up -d postgres",
+    "docker:build": "cd ./backend && docker-compose up --build",
+    "docker:kill": "cd ./backend && docker rm -f $(docker ps -aq)"
   },
   "author": "Timothy White",
   "license": "MIT"

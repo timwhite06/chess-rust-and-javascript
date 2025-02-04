@@ -8,6 +8,8 @@ actix-web = "4.3"
 actix-rt = "2.8"
 actix-web-actors = "4" # for WebSocket actor support
 actix-files = "0.6"
+actix="0.13"
 tracing = "0.1.41"
 tracing-subscriber = "0.3.19"
 sqlx = { version = "0.8.3", features = ["runtime-tokio-native-tls", "postgres"] }
+serde_json = "1.0.138"

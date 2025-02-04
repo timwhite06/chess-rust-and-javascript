@@ -1,22 +1,33 @@
-use actix_files as fs; // For serving static files
-use actix_web::{get, App, HttpResponse, HttpServer, Responder};
+mod websocket;
+mod database_handler;
 
-/// Simple HTTP endpoint at "/api"
+use std::sync::Arc; // Import Arc for shared ownership.
+use crate::database_handler::DatabaseHandler; // Import DatabaseHandler.
+use actix_files as fs;
+use actix_web::{get, web, App, HttpResponse, HttpServer};
+
 #[get("/api")]
-async fn api_endpoint() -> impl Responder {
+async fn api_endpoint() -> impl actix_web::Responder {
     HttpResponse::Ok().body("Hello from Actix API!")
 }
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    // Attempt to bind and run the server
+    // Read the database URL from an environment variable (or use a default)
+    let database_url = std::env::var("DATABASE_URL")
+        .unwrap_or_else(|_| "postgres://user:password@localhost/dbname".to_string());
+    
+    // Initialize the database handler.
+    let db_handler = Arc::new(DatabaseHandler::new(&database_url).await);
+
     let server_result = HttpServer::new(move || {
         App::new()
-            // * Register all services here - e.g. APIs, static files, etc.
+            .app_data(web::Data::new(db_handler.clone()))
             .service(api_endpoint)
+            .route("/ws", web::get().to(websocket::websocket_handler)) // WebSocket route
             .service(
                 fs::Files::new("/", "../frontend")
-                    .index_file("index.html") // Serve index.html by default
+                    .index_file("index.html") 
             )
     })
     .bind(("127.0.0.1", 3000));
@@ -27,7 +38,7 @@ async fn main() -> std::io::Result<()> {
             server.run().await
         }
         Err(e) => {
-            eprintln!("\x1b[31mFailed to start server: {}\x1b[0m", e); // Print error in red
+            eprintln!("\x1b[31mFailed to start server: {}\x1b[0m", e);
             Err(e)
         }
     }

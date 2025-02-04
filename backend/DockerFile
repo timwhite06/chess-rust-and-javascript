@@ -1,0 +1,26 @@
+# Use the official Rust image as a base
+FROM rust:1.72-slim AS builder
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Rust project files
+COPY . .
+
+# Build the application
+RUN cargo build --release
+
+# Use a smaller base image for the runtime
+FROM debian:bullseye-slim
+
+# Set the working directory
+WORKDIR /src
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/target/release/backend /app/backend
+
+# Expose the port your backend runs on
+EXPOSE 8080
+
+# Set the default command to run your application
+CMD ["/src/backend"]
